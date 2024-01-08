@@ -101,14 +101,14 @@ class BartenderBot:
         self.conversation_state["last_speech"] = user_speech
 
 
-# Initialize Furhat and BartenderBot
-furhat_robot = Furhat("localhost")
-furhat_robot.set_voice(name="Matthew")
-furhat_robot.set_led(red=200, green=50, blue=50)
+# # Initialize Furhat and BartenderBot
+# furhat_robot = Furhat("localhost")
+# furhat_robot.set_voice(name="Matthew")
+# furhat_robot.set_led(red=200, green=50, blue=50)
 
-bot = BartenderBot(furhat_robot)
+# bot = BartenderBot(furhat_robot)
 
-user_emotion = "happy"  # This would come from your emotion detection subsystem
-user_speech = "It's my birthday today!"  # This would come from speech recognition
+# user_emotion = "happy"  # This would come from your emotion detection subsystem
+# user_speech = "It's my birthday today!"  # This would come from speech recognition
 
-bot.on_user_interaction(user_emotion, user_speech)
+# bot.on_user_interaction(user_emotion, user_speech)

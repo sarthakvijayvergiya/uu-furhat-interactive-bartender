@@ -6,7 +6,7 @@ import numpy as np
 import time
 import queue
 import threading
-# from step4 import BartenderBot, Furhat
+from step4 import BartenderBot, Furhat
 
 # [Your Furhat and BartenderBot class definitions here]
 
@@ -132,34 +132,34 @@ def run_emotion_detection():
     # For example, you could use a shared variable or a queue to pass this information.
 
 
-# # Function to run the Furhat interaction system
-# def run_furhat_interaction():
-#     # Initialize Furhat and BartenderBot
-#     furhat_robot = Furhat("localhost")
-#     furhat_robot.set_voice(name="Matthew")
-#     furhat_robot.set_led(red=200, green=50, blue=50)
+# Function to run the Furhat interaction system
+def run_furhat_interaction():
+    # Initialize Furhat and BartenderBot
+    furhat_robot = Furhat("localhost")
+    furhat_robot.set_voice(name="Matthew")
+    furhat_robot.set_led(red=200, green=50, blue=50)
 
-#     bot = BartenderBot(furhat_robot)
+    bot = BartenderBot(furhat_robot)
 
-#     while True:
-#         if not emotion_queue.empty():
-#             # Get the latest detected emotion
-#             detected_emotion = emotion_queue.get()
-#             print("Detected emotion:", detected_emotion)
-#     # user_emotion = "happy"  # This would come from your emotion detection subsystem
-#     # user_speech = "It's my birthday today!"  # This would come from speech recognition
+    while True:
+        if not emotion_queue.empty():
+            # Get the latest detected emotion
+            detected_emotion = emotion_queue.get()
+            print("Detected emotion:", detected_emotion)
+    # user_emotion = "happy"  # This would come from your emotion detection subsystem
+    # user_speech = "It's my birthday today!"  # This would come from speech recognition
 
-#     # bot.on_user_interaction(user_emotion, user_speech)
-#     # [Add code here to interact with the BartenderBot based on the detected emotions]
-#     # This part of the code will retrieve the detected emotion from the emotion detection system and use it to interact with the user.
+    # bot.on_user_interaction(user_emotion, user_speech)
+    # [Add code here to interact with the BartenderBot based on the detected emotions]
+    # This part of the code will retrieve the detected emotion from the emotion detection system and use it to interact with the user.
 
 
 # Running both systems in separate threads
 emotion_thread = threading.Thread(target=run_emotion_detection)
-# furhat_thread = threading.Thread(target=run_furhat_interaction)
+furhat_thread = threading.Thread(target=run_furhat_interaction)
 
 emotion_thread.start()
-# furhat_thread.start()
+furhat_thread.start()
 
-# emotion_thread.join()
-# furhat_thread.join()
+emotion_thread.join()
+furhat_thread.join()

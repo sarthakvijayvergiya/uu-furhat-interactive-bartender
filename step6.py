@@ -14,13 +14,8 @@ import queue
 detector = Detector()
 # Emotion label mapping based on your training data
 emotion_labels = {
-    0: "neutral",
     1: "happy",
-    2: "sad",
-    3: "surprise",
-    4: "fear",
-    5: "disgust",
-    6: "angry"
+    2: "sad"
 }
 
 # Queue for communication between threads
