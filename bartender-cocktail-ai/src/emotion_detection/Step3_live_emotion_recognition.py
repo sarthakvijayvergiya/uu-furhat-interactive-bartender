@@ -19,27 +19,6 @@ emotion_labels = {
     6: "angry"
 }
 
-# # Function to preprocess and extract features from a frame
-# def extract_features(frame, detector):
-#     # Convert frame to format expected by py-feat (PIL Image)
-#     frame_pil = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-
-#     # Detect faces and extract features
-#     detections = detector.detect_faces(frame_pil)
-#     if len(detections) == 0:
-#         return None
-
-#     detected_landmarks = detector.detect_landmarks(frame, detections)
-
-#     aus = detector.detect_aus(frame_pil, detected_landmarks)
-
-#     if isinstance(aus, list) and len(aus) > 0:
-#         # Flatten the structure if it's a nested list or array
-#         aus_flat = np.array(aus[0]).flatten() if isinstance(aus[0], (list, np.ndarray)) else None
-#         return aus_flat
-#     else:
-#         return None
-
 def extract_features(frame, detector):
     # Convert frame to format expected by py-feat (PIL Image)
     frame_pil = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
@@ -68,7 +47,7 @@ def extract_features(frame, detector):
 
 
 # Load the trained model
-model = joblib.load('best_emotion_recognition_model_svm.pkl')
+model = joblib.load('./../../models/best_emotion_recognition_model.pkl')
 
 # Initialize webcam
 cap = cv2.VideoCapture(0)

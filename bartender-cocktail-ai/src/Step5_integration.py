@@ -26,7 +26,7 @@ emotion_labels = {
 }
 
 # Load the trained model
-model = joblib.load('best_emotion_recognition_model_svm.pkl')
+model = joblib.load('./../models/best_emotion_recognition_model.pkl')
 
 # Initialize webcam
 cap = cv2.VideoCapture(0)

@@ -6,14 +6,14 @@ from feat import Detector
 detector = Detector(device="cpu")
 
 # Paths to dataset and output directories
-dataset_dir = "./DiffusionFER"
-output_dir = "./processed"
+dataset_dir = "./../../data/DiffusionFER"
+output_dir = "./../../data/processed"
 
 # Ensure output directory exists
 os.makedirs(output_dir, exist_ok=True)
 
 # Path to the CSV file with valence, arousal, and expression
-csv_path = "./DiffusionFER/DiffusionEmotion_S/dataset_sheet.csv"
+csv_path = "./../../data/DiffusionFER/DiffusionEmotion_S/dataset_sheet.csv"
 
 # Load the dataset sheet
 dataset_sheet = pd.read_csv(csv_path)

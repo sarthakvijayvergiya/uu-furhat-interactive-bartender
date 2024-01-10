@@ -1,5 +1,6 @@
 import warnings
 import pandas as pd
+import os
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
@@ -17,7 +18,7 @@ import matplotlib.pyplot as plt
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 def load_and_display_data():
-    data = pd.read_csv("processed/aus.csv")  # Load your dataset
+    data = pd.read_csv("./../../data/processed/aus.csv")  # Load your dataset
     class_distribution = data["expression"].value_counts()
     print("Class distribution:")
     print(class_distribution)
@@ -105,43 +106,6 @@ def tune_random_forest(X_train, y_train):
 
 
 def main():
-    # data = load_and_display_data()
-    # X_train, X_val, X_test, y_train, y_val, y_test = split_data(data)
-    # X_train_scaled, X_val_scaled, X_test_scaled = scale_data(X_train, X_val, X_test)
-
-    # models = {
-    #     "DecisionTreeClassifier": DecisionTreeClassifier(random_state=42),
-    #     "KNeighborsClassifier": KNeighborsClassifier()
-    # }
-
-    # best_accuracy = 0
-    # best_model_name = ""
-    # best_model = None
-
-    # for name, model in models.items():
-    #     print(f"Training and evaluating {name}")
-    #     accuracy = train_and_evaluate(model, X_train_scaled, y_train, X_val_scaled, y_val)
-    #     if accuracy > best_accuracy:
-    #         best_accuracy = accuracy
-    #         best_model = model
-    #         best_model_name = name
-
-    # print(f"The best non-SVM model is {best_model_name} with a validation accuracy of {best_accuracy:.2f}")
-
-    # # Save the best performing non-SVM model
-    # if best_model is not None:
-    #     joblib.dump(best_model, 'best_emotion_recognition_model_non_svm.pkl')
-    #     print(f"Saved the best non-SVM model ({best_model_name}) to 'best_emotion_recognition_model_non_svm.pkl'.")
-
-    # # SVM model tuning and evaluation
-    # svm_model = tune_hyperparameters(X_train_scaled, y_train).best_estimator_
-    # svm_accuracy = train_and_evaluate(svm_model, X_train_scaled, y_train, X_val_scaled, y_val)
-    # print(f"Validation Set Accuracy for SVM: {svm_accuracy:.2f}")
-
-    # # Save the tuned SVM model
-    # joblib.dump(svm_model, 'best_emotion_recognition_model_svm.pkl')
-    # print("Saved the tuned SVM model to 'best_emotion_recognition_model_svm.pkl'.")
-
     data = load_and_display_data()
     X_train, X_val, X_test, y_train, y_val, y_test = split_data(data)
     X_train_scaled, X_val_scaled, X_test_scaled = scale_data(X_train, X_val, X_test)
@@ -185,7 +149,10 @@ def main():
 
     # Save the best performing model
     if best_model is not None:
-        joblib.dump(best_model, f'best_emotion_recognition_model_{best_model_name.lower()}.pkl')
+        model_filename = f'best_emotion_recognition_model.pkl'
+        data_dir = './../../models/'
+        model_filepath = os.path.join(data_dir, model_filename)
+        joblib.dump(best_model, model_filepath)
         print(f"Saved the best model ({best_model_name}) to 'best_emotion_recognition_model_{best_model_name.lower()}.pkl'.")
 
 if __name__ == "__main__":
