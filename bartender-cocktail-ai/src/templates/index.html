@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail AI</title>
+    <style>
+        #video-container {
+            position: relative;
+            width: 80%; /* Adjust the width as needed */
+            margin: auto;
+            border: 2px solid #000; /* Border color and width */
+        }
+
+        #video-feed {
+            width: 100%;
+            border-radius: 8px; /* Optional: Add border radius for rounded corners */
+        }
+    </style>
+</head>
+<body>
+    <h1>Cocktail AI</h1>
+    <div id="video-container">
+        <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Video Feed">
+    </div>
+</body>
+</html>

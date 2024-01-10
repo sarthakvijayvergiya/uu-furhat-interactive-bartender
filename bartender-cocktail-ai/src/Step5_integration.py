@@ -7,7 +7,7 @@ from flask import Flask, Response, render_template
 import time
 import threading
 import queue
-from step4 import BartenderBot, Furhat
+from bartender_interaction.Step4_bartender_furhat import BartenderBot, Furhat
 
 app = Flask(__name__)
 
