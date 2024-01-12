@@ -58,9 +58,10 @@ class BartenderBot:
         }
         self.gesture_map = {
             "greeting": "Wink",  
-            "farewell": "Goodbye",  
+            "farewell": "closeEyes",  
             "happy": "Smile", 
-            "sad": "BigSmile",  
+            "sad": "BigSmile",
+            "drink_suggestions": "Thoughtful"
         }
         self.initialize_conversation()
 
