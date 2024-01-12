@@ -56,6 +56,12 @@ class BartenderBot:
                 "farewell": "Hope you feel better soon. Take care!",
             }
         }
+        self.gesture_map = {
+            "greeting": "Wink",  
+            "farewell": "Goodbye",  
+            "happy": "Smile", 
+            "sad": "BigSmile",  
+        }
         self.initialize_conversation()
 
     def handle_keywords(self, user_speech):
@@ -70,12 +76,13 @@ class BartenderBot:
         behaviors = self.emotion_behavior_map.get(user_emotion, {})
 
         speech_response = self.map_speech_to_behavior(user_speech)
-
+        gesture = self.gesture_map.get(user_emotion)
         response = {
             "greeting": behaviors.get("greeting", ""),
             "drink_suggestion": f"How about our special '{behaviors.get('drink_suggestion')}' to match your mood?",
             "conversation": speech_response,
             "farewell": behaviors.get("farewell", ""),
+            "gesture": gesture
         }
         return response
 
@@ -109,20 +116,18 @@ class BartenderBot:
                     self.update_conversation_state(user_speech)
     
     def on_user_interaction(self, user_emotion):
-
-        
         while self.waiting_for_user_response:
-            user_speech = self.conversation_state["last_speech"]
+            user_speech = self.conversation_state.get("last_speech", "")
             response = self.generate_bot_response(user_emotion, user_speech)
 
             if response["greeting"]:
-                self.furhat.say(response["greeting"])
+                self.furhat.say(response["greeting"], gesture=self.gesture_map.get("greeting"))
             if response["drink_suggestion"]:
                 self.furhat.say(response["drink_suggestion"])
             if response["conversation"]:
                 self.furhat.say(response["conversation"])
             if response["farewell"]:
-                self.furhat.say(response["farewell"])
+                self.furhat.say(response["farewell"], gesture=self.gesture_map.get("farewell"))
 
     def serve_drink(self, drink_name):
         self.furhat.say(f"Here's your {drink_name}. Enjoy!")
